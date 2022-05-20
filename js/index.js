@@ -49,9 +49,9 @@ function ajax() {
 		data: arguments[0].data || null,
 		dataType: arguments[0].dataType || "json",
 		contentType: arguments[0].contentType || "application/x-www-form-urlencoded; charset=utf-8",
-		beforeSend: arguments[0].beforeSend || function() {},
-		success: arguments[0].success || function() {},
-		error: arguments[0].error || function() {}
+		beforeSend: arguments[0].beforeSend || function () { },
+		success: arguments[0].success || function () { },
+		error: arguments[0].error || function () { }
 	}
 
 	ajaxData.beforeSend()
@@ -61,7 +61,7 @@ function ajax() {
 	xhr.setRequestHeader("Content-Type", ajaxData.contentType);
 	xhr.send(convertData(ajaxData.data));
 
-	xhr.onreadystatechange = function() {
+	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
 				ajaxData.success(xhr.response)
@@ -90,63 +90,75 @@ function Web_loadJSONConfiguration(data, type) {
 							ajax({
 								url: "./data/" + JSONData["direction"],
 								dataType: "text",
-								success: function(data) {
+								success: function (data) {
 
 									main.innerHTML = converter.makeHtml(data);
-									
-	hljs.highlightAll();
+
+									hljs.highlightAll();
 								}
 							})
 							break;
 						}
 					case "code":
 						{
-							ajax({
-								dataType: "text",
-								url: "data/" + JSONData["direction"],
-								success: function(data) {
-									var list = JSONData["direction"].split(".");
-									var type = "";
-									switch (list[list.length - 1]) {
-										case "c":
-											type="c";
-											break;
-										case "c++":
-											type = "cpp";
-											break;
-										case "html":
-											type = "html";
-											break;
-										case "js":
-											type = "javascript";
-											break;
-										case "css":
-											type = "css";
-											break;
-										case "java":
-											type = "java";
-											break;
-										case "py":
-											type = "python";
-											break;
-										case "json":
-											type = "json";
-											break;
-										case "xml":
-											type = "xml";
-											break;
-										case "r":
-											type = "r";
-											break;
-										default:
-											type = "text";
-											break;
+							let result = ""
+							for (let i=0;i<JSONData["direction"].length;i++) {
+								
+								ajax({
+									dataType: "text",
+									url: "data/" + JSONData["direction"][i],
+									success: function (data) {
+
+
+										var dirPath = JSONData["direction"][i].split("/");
+										var fileName = dirPath[dirPath.length - 1];
+										var list = fileName.split(".");
+										var type = "";
+										switch (list[list.length - 1]) {
+											case "c":
+												type = "c";
+												break;
+											case "c++":
+												type = "cpp";
+												break;
+											case "html":
+												type = "html";
+												break;
+											case "js":
+												type = "javascript";
+												break;
+											case "css":
+												type = "css";
+												break;
+											case "java":
+												type = "java";
+												break;
+											case "py":
+												type = "python";
+												break;
+											case "json":
+												type = "json";
+												break;
+											case "xml":
+												type = "xml";
+												break;
+											case "r":
+												type = "r";
+												break;
+											default:
+												type = "text";
+												break;
+										}
+										
+										result += fileName + "\n\n" + "```" + type + "\n" + data + "```" + "\n\n";
+
+										main.innerHTML = converter.makeHtml(result);
+										hljs.highlightAll();
+
+
 									}
-									main.innerHTML = converter.makeHtml("```" + type + "\n" + data + "```");
-									
-									hljs.highlightAll();
-								}
-							})
+								})
+							}
 							break;
 						}
 					case "list":
@@ -169,22 +181,22 @@ function Web_loadJSONConfiguration(data, type) {
 			{
 
 				main.innerHTML = converter.makeHtml(data);
-				
+
 				hljs.highlightAll();
 				break;
 			}
 	}
-	
+
 }
 
-window.onload = function() {
+window.onload = function () {
 	$GLOBAL_PARAMETERS = Web_getHTMLParameters()
 	if ($GLOBAL_PARAMETERS === null) { $GLOBAL_PARAMETERS = { navigation: "index", type: "json" } }
 	console.log($GLOBAL_PARAMETERS.navigation + "." + $GLOBAL_PARAMETERS.type)
 	ajax({
 		url: 'data/' + $GLOBAL_PARAMETERS.navigation + "." + $GLOBAL_PARAMETERS.type,
 		dataType: "text",
-		success: function(data) { Web_loadJSONConfiguration(data, $GLOBAL_PARAMETERS.type) },
-		error: function() { main.innerHTML = '<center><font size="20px">404 Not Found</font><br /><a href="javascript:window.history.go(-1)">返回上一页</a></center>' }
+		success: function (data) { Web_loadJSONConfiguration(data, $GLOBAL_PARAMETERS.type) },
+		error: function () { main.innerHTML = '<center><font size="20px">404 Not Found</font><br /><a href="javascript:window.history.go(-1)">返回上一页</a></center>' }
 	})
 }
