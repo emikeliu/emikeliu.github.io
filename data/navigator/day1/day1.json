@@ -1,0 +1,7 @@
+{
+	"type": "list",
+	"title": "Day1",
+	"series": {
+		"比较三个数的大小": { "navigation": "navigator/day1/比较三个数的大小", "type": "json" }
+	}
+}

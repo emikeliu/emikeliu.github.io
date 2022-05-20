@@ -93,6 +93,8 @@ function Web_loadJSONConfiguration(data, type) {
 								success: function(data) {
 
 									main.innerHTML = converter.makeHtml(data);
+									
+	hljs.highlightAll();
 								}
 							})
 							break;
@@ -103,9 +105,12 @@ function Web_loadJSONConfiguration(data, type) {
 								dataType: "text",
 								url: "data/" + JSONData["direction"],
 								success: function(data) {
-									var list = JSONData.split(".");
+									var list = JSONData["direction"].split(".");
 									var type = "";
 									switch (list[list.length - 1]) {
+										case "c":
+											type="c";
+											break;
 										case "c++":
 											type = "cpp";
 											break;
@@ -138,6 +143,8 @@ function Web_loadJSONConfiguration(data, type) {
 											break;
 									}
 									main.innerHTML = converter.makeHtml("```" + type + "\n" + data + "```");
+									
+									hljs.highlightAll();
 								}
 							})
 							break;
@@ -162,10 +169,12 @@ function Web_loadJSONConfiguration(data, type) {
 			{
 
 				main.innerHTML = converter.makeHtml(data);
+				
+				hljs.highlightAll();
 				break;
 			}
 	}
-
+	
 }
 
 window.onload = function() {

@@ -2,7 +2,6 @@
 	"type": "list",
 	"title": "首页",
 	"series": {
-		"数学": { "navigation": "navigator/math", "type": "json" },
 		"计算机": { "navigation": "navigator/cs", "type": "json" }
 	}
 }

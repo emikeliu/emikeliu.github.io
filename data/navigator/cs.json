@@ -2,6 +2,7 @@
 	"type": "list",
 	"title": "计算机",
 	"series": {
-		"本网站文档": { "navigation": "navigator/document", "type": "md" }
+		"本网站文档": { "navigation": "navigator/document", "type": "md" },
+		"Day1":{"navigation":"navigator/day1/day1","type":"json"}
 	}
 }
