@@ -6,13 +6,18 @@
 
 ---
 
+文档：
 
-<center>![朴素做法](data/navigator/cpl/比较三个变量的大小-朴素做法.drawio.svg)</center>
-<center>流程图-朴素做法</center>
-
-<center>![简便做法](data/navigator/cpl/比较三个变量的大小-简便做法.drawio.svg)</center>
-<center>流程图-简便做法</center>
+[流程图](index.html?navigation=navigator/cpl/day1/day1&type=json)
 
 附件： 
 
 [比较三个数的大小](index.html?navigation=navigator/cpl/day1/比较三个数的大小&type=json)
+
+## Day2
+
+附件
+
+---
+
+[Day2 题目](index.html?navigation=navigator/cpl/day2/day2&type=json)
