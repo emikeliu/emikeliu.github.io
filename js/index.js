@@ -150,7 +150,7 @@ function Web_loadJSONConfiguration(data, type) {
 												break;
 										}
 										
-										result += fileName + "\n\n" + "```" + type + "\n" + data + "```" + "\n\n";
+										result += fileName + "\n\n" + "```" + type + "\n" + data + "\n\n```" + "\n\n";
 
 										main.innerHTML = converter.makeHtml(result);
 										hljs.highlightAll();
