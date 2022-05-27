@@ -29,3 +29,11 @@
 --
 
 [Exp1 题目](index.html?navigation=navigator/cpl/exp1/exp1&type=json)
+
+## Day3
+
+附件
+
+--
+
+[Day3 题目](index.html?navigation=navigator/cpl/day3/day3&type=json)
