@@ -12,8 +12,8 @@ function normalizedArticleList(files) {
         let info = path.parse(T)
         return (
             {
-                "modify":new Date(stats.mtime*1000).toLocaleDateString("zh-CN"),
-                "create":new Date(stats.ctime*1000).toLocaleDateString("zh-CN"),
+                "modify":new Date(stats.mtime).toLocaleDateString("zh-CN"),
+                "create":new Date(stats.ctime).toLocaleDateString("zh-CN"),
                 "context":context,
                 "path": T,
                 "ext": info.ext,
