@@ -7,7 +7,7 @@ class PageLoader extends Component {
         return <List sx={{ margin: "auto", maxWidth: "100%", textAlign: "center"}}>
             {
             articles.map((T)=>{
-                return (<ListItem alignItems="center"><ArticleCard author={T.author} showName={T.showName} context={T.context} path={"#/articles/"+T.path}></ArticleCard></ListItem>)
+                return (<ListItem alignItems="center"><ArticleCard create={T.create} modify={T.modify} author={T.author} showName={T.showName} context={T.context} path={"#/articles/"+T.path}></ArticleCard></ListItem>)
             })}
         </List>
             

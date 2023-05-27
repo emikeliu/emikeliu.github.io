@@ -10,7 +10,7 @@ class PageViewer extends Component {
         import("./articles/"+this.props.file).then((value)=>{
             // this.setState({text:value})
             // console.log(value.default)
-            this.setState({text:"<h1>"+this.props.title+"</h1>"+value.default})
+            this.setState({text:"<h1>"+this.props.title+"</h1><p>最后修改于"+this.props.modify+"</p>"+value.default})
         })
     }
     componentDidUpdate() {

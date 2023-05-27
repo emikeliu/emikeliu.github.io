@@ -13,7 +13,7 @@ class ArticleCard extends Component {
                             </Avatar>
                         }
                         title={this.props.showName}
-                        subheader={this.props.author}
+                        subheader={this.props.create}
 
                     />
                     <CardContent>

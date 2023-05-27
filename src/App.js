@@ -72,7 +72,7 @@ function App() {
                       <Route index path="/" element={<PageLoader/>} />
                       <Route path="" element={<PageLoader/>} />
                       {articles.map((T)=>{
-                        return <Route path={"/articles/"+T.path} element={<PageViewer title={T.showName} file={T.path}/>}/>
+                        return <Route path={"/articles/"+T.path} element={<PageViewer title={T.showName} modify={T.modify} file={T.path}/>}/>
                       })}
                       {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
                       <Route path="*" element={<Error404/>} />

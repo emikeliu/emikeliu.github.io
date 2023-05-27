@@ -1,17 +1,19 @@
 'use strict';
 const fs =  require("fs-extra")
 const path = require("path")
-const readline = require("readline")
 let articleList = []
 function normalizedArticleList(files) {
     return files.map((T) => {
         let data = fs.readFileSync(path.join("./src/pages/articles",T),{encoding:"utf-8"})
+        let stats = fs.statSync(path.join("./src/pages/articles",T))
         let eol = data.indexOf("\n")
         let config = JSON.parse(data.substring(9,eol-1))
         let context = data.substring(eol+1,eol+51)
         let info = path.parse(T)
         return (
             {
+                "modify":new Date(stats.mtime*1000).toLocaleDateString("zh-CN"),
+                "create":new Date(stats.ctime*1000).toLocaleDateString("zh-CN"),
                 "context":context,
                 "path": T,
                 "ext": info.ext,
