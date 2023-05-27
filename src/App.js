@@ -55,7 +55,7 @@ function App() {
   })
   return (
     <HashRouter>
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme} >
         <ScopedCssBaseline>
           <Routes>
             <Route path="/" element={<NaviBar isIndex={true}/>} />
