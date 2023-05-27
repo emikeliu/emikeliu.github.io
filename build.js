@@ -4,7 +4,7 @@ const readline = require("readline")
 articleList = []
 function normalizedArticleList(files) {
     return files.map((T) => {
-        let data = fs.readFileSync(T,{encoding:"utf-8"})
+        let data = fs.readFileSync(path.join("./src/pages/articles",T),{encoding:"utf-8"})
         let eol = data.indexOf("\n")
         let config = JSON.parse(data.substring(9,eol-1))
         let context = data.substring(eol+1,eol+51)
@@ -42,4 +42,4 @@ function buildArticleList(directory) {
     }
     return files
 }
-fs.writeFileSync("./src/pages/articles.json", JSON.stringify(normalizedArticleList(addDirectory(buildArticleList)("./articles"))), {encoding:"utf-8"})
+fs.writeFileSync("./src/pages/articles.json", JSON.stringify(normalizedArticleList(buildArticleList("./src/pages/articles"))), {encoding:"utf-8"})

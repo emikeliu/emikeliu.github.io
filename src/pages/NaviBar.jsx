@@ -1,4 +1,4 @@
-import { Menu } from '@mui/icons-material';
+import { ArrowBack, Menu } from '@mui/icons-material';
 import { AppBar, IconButton, Slide, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import PropTypes from "prop-types";
 import { Component } from "react";
@@ -14,12 +14,19 @@ function HideOnScroll(props) {
 HideOnScroll.propTypes = {
     children: PropTypes.element.isRequired,
 };
+
 class NaviBar extends Component {
     render() {
+        function ToolbarClick() {
+            if(!this.props.isIndex) {
+                window.location.hash=""
+            }
+        }
+        
         return (
             <HideOnScroll {...this.props}>
 
-                <AppBar position="sticky">
+                <AppBar position="sticky" enableColorOnDark>
                     
                     <Toolbar>
                     <IconButton
@@ -28,8 +35,15 @@ class NaviBar extends Component {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
+                        onClick={ToolbarClick.bind(this)}
                     >
-                        <Menu />
+                    {
+                        (this.props.isIndex)
+                        ?
+                            <Menu/>
+                        :<ArrowBack/>
+                    }
+                        
                     </IconButton>
                         <Typography
                             variant="h5"

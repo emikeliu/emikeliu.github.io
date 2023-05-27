@@ -1,7 +1,8 @@
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { Box, Fab, Fade, Grid, ScopedCssBaseline, ThemeProvider, createTheme, useScrollTrigger } from "@mui/material";
 import PropTypes from "prop-types";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Error404 from "./pages/Error404";
 import NaviBar from "./pages/NaviBar";
 import PageLoader from "./pages/PageLoader";
 import PageViewer from "./pages/PageViewer";
@@ -42,6 +43,7 @@ ScrollTop.propTypes = {
   children: PropTypes.element.isRequired
 };
 function App() {
+  let ready = true;
   let defaultTheme = createTheme({
     // components: {
     //     : {
@@ -52,28 +54,35 @@ function App() {
     // }
   })
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider theme={defaultTheme}>
         <ScopedCssBaseline>
-          <NaviBar />
+          <Routes>
+            <Route path="/" element={<NaviBar isIndex={true}/>} />
+            <Route path="*" element={<NaviBar isIndex={false}/> }/>
+          </Routes>
           <Box component="div" style={{ margin: "0 0 0 0" }}>
             <main>
+            <Fade in={ready} timeout={800}>
               <Box component="main">
                 <Grid container space={0}>
                   <Grid item xs={0} sm={0} md={1} lg={2} xl={1}></Grid>
                   <Grid item xs={12} sm={12} md={10} lg={8} xl={10}>
                     <Routes>
-                      <Route path="/" element={<PageLoader/>} />
+                      <Route index path="/" element={<PageLoader/>} />
+                      <Route path="" element={<PageLoader/>} />
                       {articles.map((T)=>{
-                        return <Route path={"/"+T.path} element={<PageViewer file={"/"+T.path}/>}/>
+                        return <Route path={"/articles/"+T.path} element={<PageViewer title={T.showName} file={T.path}/>}/>
                       })}
                       {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
+                      <Route path="*" element={<Error404/>} />
                     </Routes>
 
                   </Grid>
                   <Grid item xs={0} sm={0} md={1} lg={2} xl={1}></Grid>
                 </Grid>
               </Box>
+              </Fade>
             </main>
             <ScrollTop>
               <Fab onClick={scroll} size="small" aria-label="scroll back to top">
@@ -84,7 +93,7 @@ function App() {
         </ScopedCssBaseline>
       </ThemeProvider>
 
-    </BrowserRouter>
+    </HashRouter>
 
 
   );
