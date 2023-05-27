@@ -1,48 +1,111 @@
 [//]: # ({"name":"首页","author":"Mike Liu","tag":["index"]})
-ChatGLM-6B 是一个开源的、支持中英双语问答的对话语言模型，基于 General Language Model (GLM) 架构，具有 62 亿参数。结合模型量化技术，用户可以在消费级的显卡上进行本地部署（INT4 量化级别下最低只需 6GB 显存）。ChatGLM-6B 使用了和 ChatGLM 相同的技术，针对中文问答和对话进行了优化。经过约 1T 标识符的中英双语训练，辅以监督微调、反馈自助、人类反馈强化学习等技术的加持，62 亿参数的 ChatGLM-6B 已经能生成相当符合人类偏好的回答。
+JavaScript
 
-```python
-for i in range(10):
-    print("hello, world!")
+Here:
+
+```javascript
+import { KeyboardArrowUp } from "@mui/icons-material";
+import { Box, Fab, Fade, Grid, ScopedCssBaseline, ThemeProvider, createTheme, useScrollTrigger } from "@mui/material";
+import PropTypes from "prop-types";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Error404 from "./pages/Error404";
+import NaviBar from "./pages/NaviBar";
+import PageLoader from "./pages/PageLoader";
+import PageViewer from "./pages/PageViewer";
+import articles from './pages/articles.json';
+function ScrollTop(props) {
+  const { children } = props;
+  const trigger = useScrollTrigger();
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      '#back-to-top-anchor',
+    );
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: 'center',
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+function scroll() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired
+};
+function App() {
+  let ready = true;
+  let defaultTheme = createTheme({
+    // components: {
+    //     : {
+    //       styleOverrides: {
+    //         backgroundColor:"#f5f5f5"
+    //       }
+    //     }
+    // }
+  })
+  return (
+    <HashRouter>
+      <ThemeProvider theme={defaultTheme}>
+        <ScopedCssBaseline>
+          <Routes>
+            <Route path="/" element={<NaviBar isIndex={true}/>} />
+            <Route path="*" element={<NaviBar isIndex={false}/> }/>
+          </Routes>
+          <Box component="div" style={{ margin: "0 0 0 0" }}>
+            <main>
+            <Fade in={ready} timeout={800}>
+              <Box component="main">
+                <Grid container space={0}>
+                  <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
+                  <Grid item xs={12} sm={12} md={10} lg={8} xl={10}>
+                    <Routes>
+                      <Route index path="/" element={<PageLoader/>} />
+                      <Route path="" element={<PageLoader/>} />
+                      {articles.map((T)=>{
+                        return <Route path={"/articles/"+T.path} element={<PageViewer title={T.showName} file={T.path}/>}/>
+                      })}
+                      {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
+                      <Route path="*" element={<Error404/>} />
+                    </Routes>
+
+                  </Grid>
+                  <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
+                </Grid>
+              </Box>
+              </Fade>
+            </main>
+            <ScrollTop>
+              <Fab onClick={scroll} size="small" aria-label="scroll back to top">
+                <KeyboardArrowUp />
+              </Fab>
+            </ScrollTop>
+          </Box>
+        </ScopedCssBaseline>
+      </ThemeProvider>
+
+    </HashRouter>
+
+
+  );
+}
+
+export default App;
+
 ```
-
-ChatGLM-6B is an open bilingual language model based on General Language Model (GLM) framework, with 6.2 billion parameters. With the quantization technique, users can deploy locally on consumer-grade graphics cards (only 6GB of GPU memory is required at the INT4 quantization level). ChatGLM-6B uses technology similar to ChatGPT, optimized for Chinese QA and dialogue. The model is trained for about 1T tokens of Chinese and English corpus, supplemented by supervised fine-tuning, feedback bootstrap, and reinforcement learning wit human feedback. With only about 6.2 billion parameters, the model is able to generate answers that are in line with human preference.
-
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut congue ipsum. Nunc et lectus mattis, egestas neque vel, pellentesque ante. Fusce feugiat neque ac ex tempus pretium. Quisque faucibus tellus at justo luctus feugiat. Suspendisse porta mattis enim, eget maximus sapien. Aenean sed dolor sodales, pharetra augue tincidunt, placerat mi. Donec vestibulum suscipit nulla.
-
-Sed vel rhoncus dui, sit amet vulputate leo. Ut eleifend tempus dui, et viverra sem aliquam vitae. Curabitur sagittis massa ut dui tincidunt fermentum. Nam et nunc sollicitudin, tincidunt nisi non, placerat ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam feugiat sodales risus vel euismod. Nullam ultrices dolor nec pharetra imperdiet. Nulla pulvinar leo non libero varius vehicula.
-
-Sed tempus id nulla vel bibendum. Vivamus iaculis eget ante non vestibulum. Morbi maximus, enim eget hendrerit condimentum, orci magna ultricies magna, ac faucibus nulla nisl sit amet felis. Ut leo tellus, tempor quis diam ut, pharetra bibendum felis. Donec placerat tincidunt libero, sit amet ornare lacus suscipit ut. Fusce vulputate sagittis accumsan. Nunc commodo ligula tellus, eget ullamcorper lorem scelerisque sed.
-
-Suspendisse blandit nisi eu mi condimentum vulputate. In turpis turpis, sodales id eros eget, ultricies varius ante. Cras sed elit fringilla, condimentum elit at, interdum est. Quisque arcu arcu, fermentum sit amet faucibus ac, volutpat id metus. Maecenas iaculis ex vel purus lacinia, sit amet tempus tellus pulvinar. Nam et pellentesque enim. Nam quis volutpat libero. Praesent pulvinar, tellus at tempor blandit, risus nunc congue orci, id elementum sem risus in massa. Nullam a tellus convallis, cursus quam et, elementum ante.
-
-Nam ac aliquet metus, sed congue est. Vivamus maximus porta est, vel placerat velit. Fusce non ullamcorper mauris, a pharetra justo. Aliquam id lorem vitae enim viverra efficitur. Curabitur imperdiet sem sed quam maximus, id gravida justo cursus. Vivamus vulputate tempus ligula vel tincidunt. Mauris vehicula eleifend lacus. Phasellus sed convallis quam. Etiam quis orci ut elit aliquet aliquet. Sed auctor urna ante, nec molestie elit accumsan quis. Nam sodales efficitur mollis. Phasellus sit amet vulputate nunc. Praesent dapibus ex eu justo hendrerit viverra. Aenean ultricies volutpat dolor, ac sagittis diam venenatis eget. Praesent vestibulum nibh nulla, vel consectetur nunc placerat at.
-
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi vel neque nisi. Phasellus eu ante sit amet nisl mattis vestibulum. Nullam quis sollicitudin massa. Proin blandit, erat at efficitur vestibulum, neque elit feugiat justo, quis sollicitudin ipsum dolor ut quam. Sed dapibus cursus eros, vitae pellentesque magna dapibus a. Integer eget efficitur turpis. Nullam in eros at nibh aliquet suscipit quis eget ipsum. Vestibulum vestibulum ex ut accumsan lacinia. Etiam non neque euismod, tincidunt urna et, laoreet enim. Suspendisse ut commodo dolor. Nulla id elementum turpis, accumsan posuere nisi.
-
-Integer molestie diam in dolor sodales, accumsan malesuada justo placerat. Ut mattis libero nec euismod consectetur. Fusce vestibulum sit amet ante vitae porttitor. Aliquam placerat, elit in auctor porta, odio arcu elementum odio, et malesuada sapien turpis sed mi. Aenean laoreet urna a enim suscipit, a imperdiet lectus consectetur. Suspendisse molestie, est eget condimentum varius, odio odio maximus est, ut semper velit augue mollis mi. Duis feugiat ornare eros, ut cursus eros euismod vitae. In et tortor suscipit nisi condimentum cursus. Sed in erat libero. Mauris at congue lorem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum metus tortor, sagittis et aliquet a, vehicula at felis. Nullam felis dui, accumsan vel pellentesque sed, molestie ac odio.
-
-Phasellus fringilla turpis in ipsum convallis mattis. Duis tempus vel libero eu blandit. Curabitur fermentum, purus nec consectetur tincidunt, tellus magna lobortis massa, nec sollicitudin velit nunc eget enim. Aliquam interdum pulvinar lacus in fermentum. Nulla ac molestie massa. In efficitur fringilla sem id porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse volutpat maximus pellentesque. Curabitur quis dolor consectetur, dignissim purus sed, pellentesque arcu. Pellentesque ac tellus nulla. Nam ac lacinia tortor, eu imperdiet turpis. Sed euismod nulla dui, eu feugiat orci consectetur sit amet. Nunc a felis id nisi aliquet ultricies laoreet sit amet sapien.
-
-Aenean egestas ante vitae mauris dapibus, non vehicula quam sagittis. Etiam aliquet libero id lectus lobortis, sed tincidunt mi scelerisque. Vivamus at nunc placerat, suscipit elit vel, sollicitudin purus. Vivamus rutrum lectus a diam porta tincidunt. Aliquam imperdiet laoreet lectus. Integer blandit, neque scelerisque vulputate condimentum, augue ex interdum enim, nec pellentesque eros dui vitae nisi. Curabitur at tortor tortor. Nunc pulvinar tempor risus, quis luctus leo interdum sed. Proin efficitur venenatis nulla id rhoncus. Fusce a mi fermentum, rhoncus eros sed, consequat tellus. Pellentesque egestas arcu id augue aliquet finibus. Aenean vitae velit eleifend, mattis diam vel, iaculis metus.
-
-Vestibulum diam magna, fringilla in dolor ac, varius porta turpis. Praesent pellentesque magna ex, ac malesuada dui commodo eget. Aliquam commodo ante ut dui suscipit aliquet. Etiam enim magna, cursus ac tristique at, semper at risus. Aliquam erat volutpat. Proin fringilla mauris eu sollicitudin ornare. Donec ornare, mauris id vestibulum malesuada, magna felis mollis orci, sed euismod urna felis at ex. Etiam cursus, leo in varius facilisis, felis tortor sollicitudin nisi, ut venenatis metus augue sed ligula. Proin suscipit purus ac mauris commodo, at ornare nisl lacinia.
-
-Praesent vitae risus urna. Proin lacinia volutpat odio in aliquam. Donec tincidunt lacinia metus id convallis. Fusce quam orci, semper nec ultrices sit amet, vehicula pharetra libero. Nam bibendum massa at enim luctus malesuada. Pellentesque gravida, velit vitae varius mollis, nisl odio luctus ante, vitae tempus metus nisl id quam. In hac habitasse platea dictumst. Sed in pharetra magna, eu sollicitudin augue. Donec non erat sodales, facilisis dolor ut, cursus magna.
-
-Proin porta interdum porta. Suspendisse potenti. Ut non massa fermentum, ullamcorper est sed, rutrum enim. Nunc ac purus leo. Suspendisse odio nisl, pretium at lectus eu, congue vehicula eros. In ornare fermentum orci eu efficitur. Aenean id sem nec nisi cursus pharetra quis eu nibh. Vivamus a nibh nunc. Sed vel malesuada dolor. Etiam imperdiet nibh nunc, sit amet condimentum elit laoreet et. Duis et facilisis tellus. Aliquam congue pellentesque leo, hendrerit varius arcu egestas vitae. Integer pharetra dolor erat, id ullamcorper nunc tempor ac.
-
-Duis iaculis felis convallis, finibus erat id, congue orci. Aenean pretium magna vel ipsum finibus condimentum. Nulla facilisi. Cras bibendum facilisis ante ut ullamcorper. Ut tempus vestibulum auctor. Duis ac mauris eros. Quisque id urna vitae enim dignissim egestas vel a ligula. Praesent feugiat tellus sed nisi efficitur malesuada. Praesent nec tincidunt risus, mollis tincidunt mi. Morbi fringilla nunc ac magna egestas vehicula. Praesent sodales sed lectus molestie rutrum. Aliquam sed augue justo. Praesent id mi et dolor interdum interdum.
-
-Etiam elit augue, blandit et porta et, aliquet et dolor. Vestibulum accumsan velit nunc, condimentum lobortis ipsum eleifend tincidunt. Praesent cursus in mi ac imperdiet. Ut ornare odio nec leo lacinia mollis finibus nec purus. Quisque pharetra et risus ac dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum ornare risus vitae malesuada. In hac habitasse platea dictumst. Curabitur vel hendrerit nisi. Mauris aliquam volutpat ultrices. Aliquam vitae dignissim massa, sed dapibus nibh. Quisque vulputate magna in risus maximus, consequat fringilla neque interdum. Nulla luctus ornare rhoncus.
-
-Praesent nulla velit, porttitor vitae orci eu, placerat efficitur magna. Morbi elit nisi, laoreet et tellus consectetur, elementum finibus magna. Vivamus varius a erat vitae pulvinar. Duis sit amet ante vitae orci sagittis blandit eget at felis. Aliquam varius ex eu ex bibendum semper. Donec vitae nunc at erat convallis molestie sit amet eget justo. Sed iaculis urna vitae mi luctus, ac ultricies odio vestibulum. Fusce tempor dignissim blandit.
-
-Pellentesque non dui suscipit, pellentesque nulla vel, tempus lectus. Sed luctus, arcu at aliquet fermentum, arcu erat gravida arcu, vel accumsan lacus nulla quis mi. Cras vel dolor lectus. Praesent ultricies tempor laoreet. In id posuere nisi. Phasellus vel pulvinar velit. Sed a dolor tortor. Mauris tincidunt, nisi et fermentum ultrices, velit felis pharetra nisi, non iaculis ex tortor sit amet lorem. Aenean nulla justo, maximus non lacinia a, viverra id libero. Sed sodales varius ante, finibus semper odio malesuada ac. Nulla dapibus lacus ut velit lacinia, id suscipit felis viverra. Nullam vulputate, odio vel luctus eleifend, neque nisi rutrum diam, at molestie nulla ante a neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla eget viverra mi. Nam et mi et ante pulvinar convallis.
-
-Aenean eget congue est, eu tristique orci. In libero sem, vulputate quis dolor vel, cursus mollis nisl. Maecenas elementum congue nisl vel tempus. In feugiat quam dui, ut posuere ante dapibus eu. Aliquam erat volutpat. Aliquam aliquet, diam sed accumsan aliquet, elit tellus laoreet velit, vehicula rhoncus quam ante vitae lorem. Aliquam scelerisque nulla sit amet ipsum facilisis, nec dignissim sapien porta.
-
-Ut vitae neque et arcu sollicitudin blandit id fringilla leo. Curabitur in magna porttitor, egestas ex a, fringilla sem. Integer vitae placerat metus. Suspendisse imperdiet, orci non interdum bibendum, orci est varius metus, vitae pellentesque nunc sapien id arcu. Suspendisse potenti. Vestibulum imperdiet, augue ut pulvinar semper, odio turpis venenatis mi, in consequat elit turpis at nunc. Aliquam erat volutpat. Nullam bibendum eu diam a rutrum. Aenean eu hendrerit urna.
-
-Suspendisse quis magna dui. Suspendisse dolor risus, congue sed nibh vel, luctus iaculis justo. Quisque sed ante nisi. Nam nisi massa, gravida ut eleifend quis, tristique dapibus nisi. Nullam facilisis nibh a mollis facilisis. Cras at dapibus mauris. In orci nisi, mollis ac iaculis quis, ultrices vel lorem. Praesent eu cursus mi. Aliquam congue tincidunt est. Morbi volutpat euismod pulvinar. Aenean in turpis a nibh maximus tincidunt. Nulla ac ex nec sem suscipit ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ornare accumsan urna a sagittis. Nunc semper tellus ex, in vestibulum diam commodo sed. Suspendisse ac lacus lorem. 
+index.md

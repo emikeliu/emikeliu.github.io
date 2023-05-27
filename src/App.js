@@ -66,7 +66,7 @@ function App() {
             <Fade in={ready} timeout={800}>
               <Box component="main">
                 <Grid container space={0}>
-                  <Grid item xs={0} sm={0} md={1} lg={2} xl={1}></Grid>
+                  <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
                   <Grid item xs={12} sm={12} md={10} lg={8} xl={10}>
                     <Routes>
                       <Route index path="/" element={<PageLoader/>} />
@@ -79,7 +79,7 @@ function App() {
                     </Routes>
 
                   </Grid>
-                  <Grid item xs={0} sm={0} md={1} lg={2} xl={1}></Grid>
+                  <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
                 </Grid>
               </Box>
               </Fade>
