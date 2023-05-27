@@ -62,12 +62,12 @@ function App() {
             <Route path="*" element={<NaviBar isIndex={false}/> }/>
           </Routes>
           <Box component="div" style={{ margin: "0 0 0 0" }}>
-            <main>
+            <main style={{backgroundColor:"#f5f5f5",height:"100vh"}}>
             <Fade in={ready} timeout={800}>
               <Box component="main">
                 <Grid container space={0}>
                   <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
-                  <Grid item xs={12} sm={12} md={10} lg={8} xl={10}>
+                  <Grid item xs={12} sm={12} md={10} lg={10} xl={10}>
                     <Routes>
                       <Route index path="/" element={<PageLoader/>} />
                       <Route path="" element={<PageLoader/>} />
