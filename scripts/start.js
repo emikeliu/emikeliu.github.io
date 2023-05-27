@@ -19,7 +19,8 @@ function normalizedArticleList(files) {
                 "ext": info.ext,
                 "showName": config.name,
                 "author": config.author,
-                "tag": config.tag
+                "tag": config.tag,
+                "license": config.license
             })
     })
 }

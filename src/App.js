@@ -1,11 +1,13 @@
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { Box, Fab, Fade, Grid, ScopedCssBaseline, ThemeProvider, createTheme, useScrollTrigger } from "@mui/material";
 import PropTypes from "prop-types";
+import { Component } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Error404 from "./pages/Error404";
 import NaviBar from "./pages/NaviBar";
 import PageLoader from "./pages/PageLoader";
 import PageViewer from "./pages/PageViewer";
+import SlideMenu from "./pages/SlideMenu";
 import articles from './pages/articles.json';
 function ScrollTop(props) {
   const { children } = props;
@@ -42,37 +44,43 @@ function scroll() {
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired
 };
-function App() {
-  let ready = true;
-  let defaultTheme = createTheme({
-    // components: {
-    //     : {
-    //       styleOverrides: {
-    //         backgroundColor:"#f5f5f5"
-    //       }
-    //     }
-    // }
-  })
+class App extends Component {
+  constructor()
+  {
+    super()
+    this.state=({menuOn:false,ready:true})
+    this.defaultTheme = createTheme({
+      // components: {
+      //     : {
+      //       styleOverrides: {
+      //         backgroundColor:"#f5f5f5"
+      //       }
+      //     }
+      // }
+    })
+  }
+render(){
   return (
     <HashRouter>
-      <ThemeProvider theme={defaultTheme} >
+      <ThemeProvider theme={this.defaultTheme} >
         <ScopedCssBaseline>
+          <SlideMenu toggleOpenStatus={()=>{this.setState({"menuOn":!this.state.menuOn})}} open={this.state.menuOn}/>
           <Routes>
-            <Route path="/" element={<NaviBar isIndex={true}/>} />
-            <Route path="*" element={<NaviBar isIndex={false}/> }/>
+            <Route path="/" element={<NaviBar toggleMenuOn={()=>{this.setState({"menuOn":!this.state.menuOn})}} isIndex={true}/>} />
+            <Route path="*" element={<NaviBar toggleMenuOn={()=>{}} isIndex={false}/> }/>
           </Routes>
           <Box component="div" style={{ margin: "0 0 0 0" }}>
             <main style={{backgroundColor:"#f5f5f5",height:"100vh"}}>
-            <Fade in={ready} timeout={800}>
+            <Fade in={this.state.ready} timeout={800}>
               <Box component="main">
                 <Grid container space={0}>
                   <Grid item xs={0} sm={0} md={0} lg={1} xl={1}></Grid>
-                  <Grid item xs={12} sm={12} md={10} lg={10} xl={10}>
+                  <Grid item xs={12} sm={12} md={12} lg={10} xl={10}>
                     <Routes>
                       <Route index path="/" element={<PageLoader/>} />
                       <Route path="" element={<PageLoader/>} />
                       {articles.map((T)=>{
-                        return <Route path={"/articles/"+T.path} element={<PageViewer title={T.showName} modify={T.modify} file={T.path}/>}/>
+                        return <Route path={"/articles/"+T.path} element={<PageViewer license={T.license} title={T.showName} modify={T.modify} file={T.path}/>}/>
                       })}
                       {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
                       <Route path="*" element={<Error404/>} />
@@ -96,7 +104,7 @@ function App() {
     </HashRouter>
 
 
-  );
+  );}
 }
 
 export default App;

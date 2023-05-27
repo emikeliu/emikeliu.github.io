@@ -1,4 +1,4 @@
-[//]: # ({"name":"首页","author":"Mike Liu","tag":["index"]})
+[//]: # ({"name":"首页","author":"Mike Liu","tag":["index"],"license":"CC-BY 4.0"})
 JavaScript
 
 Here:

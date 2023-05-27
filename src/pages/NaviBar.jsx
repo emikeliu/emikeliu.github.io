@@ -19,10 +19,15 @@ class NaviBar extends Component {
     render() {
         function ToolbarClick() {
             if(!this.props.isIndex) {
-                window.location.hash=""
+                window.location.hash = ""
+            }
+            else {
+                this.props.toggleMenuOn()
             }
         }
-        
+        function MenuButtonClick() {
+            this.props.toggleMenuOn()
+        }
         return (
             <HideOnScroll {...this.props}>
 
@@ -51,8 +56,9 @@ class NaviBar extends Component {
                         >
                             Mike Liu 的个人博客
                         </Typography>
+                    
+                
                     </Toolbar>
-
                 </AppBar>
 
 

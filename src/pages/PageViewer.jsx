@@ -1,5 +1,6 @@
+import { Box, Typography } from "@mui/material";
 import hljs from "highlight.js";
-import { Component } from "react";
+import { Component, Fragment } from "react";
 class PageViewer extends Component {
     constructor() {
         super()
@@ -10,14 +11,27 @@ class PageViewer extends Component {
         import("./articles/"+this.props.file).then((value)=>{
             // this.setState({text:value})
             // console.log(value.default)
-            this.setState({text:"<h1>"+this.props.title+"</h1><p>最后修改于"+this.props.modify+"</p>"+value.default})
+            this.setState({text:value.default})
         })
     }
     componentDidUpdate() {
         hljs.highlightAll(document.querySelectorAll("pre code"))
     }
     render() {
-        return <div dangerouslySetInnerHTML={{__html:(this.state.text)}} style={{margin:"5px 5px 5px 5px"}} id="element"></div>
+        return <Fragment >
+            <Box style={{marginTop:"5vh",marginBottom:"2vh"}}>
+
+            
+            <Typography variant="h3" component="div">
+                {this.props.title}
+            </Typography>
+            <div dangerouslySetInnerHTML={{__html:(this.state.text)}} style={{margin:"5px 5px 5px 5px"}} id="element"></div>
+            <Typography variant="p" color="grey" component="div">
+                编辑于 {this.props.modify} · {this.props.license}
+                
+            </Typography>
+            </Box>
+            </Fragment>
     }
 }
 export default PageViewer
