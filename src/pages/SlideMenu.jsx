@@ -1,34 +1,34 @@
-import { Avatar, Box, Divider, Drawer, MenuItem, MenuList, Toolbar, Typography, useTheme } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Avatar, Box, Divider, Drawer, MenuItem, MenuList, Toolbar, Typography } from "@mui/material";
+import { Fragment } from "react";
 import * as MikeLiu from "../static/avatar.png";
 import * as Background from "../static/background.jpg";
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+// function TabPanel(props) {
+//     const { children, value, index, ...other } = props;
   
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            {children}
-          </Box>
-        )}
-      </div>
-    );
-  }
+//     return (
+//       <div
+//         role="tabpanel"
+//         hidden={value !== index}
+//         id={`simple-tabpanel-${index}`}
+//         aria-labelledby={`simple-tab-${index}`}
+//         {...other}
+//       >
+//         {value === index && (
+//           <Box sx={{ p: 3 }}>
+//             {children}
+//           </Box>
+//         )}
+//       </div>
+//     );
+//   }
 function SlideMenu(props) {
-    const theme = useTheme()
+    // const theme = useTheme()
     
-    const [selection ,updateSelection] = useState(0)
-    console.log(Background.default)
-    function toggleTabSelection(event, value) {
-        updateSelection(value)
-    }
+    // const [selection ,updateSelection] = useState(0)
+    // console.log(Background.default)
+    // function toggleTabSelection(event, value) {
+    //     updateSelection(value)
+    // }
     return <Fragment>
         <Drawer
             anchor="left"

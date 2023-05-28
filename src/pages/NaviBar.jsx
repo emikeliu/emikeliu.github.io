@@ -25,9 +25,9 @@ class NaviBar extends Component {
                 this.props.toggleMenuOn()
             }
         }
-        function MenuButtonClick() {
-            this.props.toggleMenuOn()
-        }
+        // function MenuButtonClick() {
+        //     this.props.toggleMenuOn()
+        // }
         return (
             <HideOnScroll {...this.props}>
 
