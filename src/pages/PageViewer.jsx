@@ -19,7 +19,7 @@ class PageViewer extends Component {
     }
     render() {
         return <Fragment >
-            <Box style={{marginTop:"5vh",marginBottom:"2vh"}}>
+            <Box style={{marginTop:"5vh",marginBottom:"2vh",marginLeft:"2vw",marginRight:"2vw"}}>
 
             
             <Typography variant="h3" component="div">
