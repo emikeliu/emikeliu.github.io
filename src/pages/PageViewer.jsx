@@ -22,6 +22,7 @@ class PageViewer extends Component {
             // console.log(value.default)
             this.setState({text:value.default})
         })
+        this.props.setTitle(this.props.title)
     }
     componentDidUpdate() {
         hljs.highlightAll(document.querySelectorAll("pre code"))

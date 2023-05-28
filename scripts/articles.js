@@ -12,7 +12,7 @@ function normalizedArticleList(files) {
         return (
             {
                 "modify":stats.mtime,
-                "create":stats.birthtime,
+                "create":stats.ctime,
                 "context":context,
                 "path": T,
                 "ext": info.ext,

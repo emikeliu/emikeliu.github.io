@@ -1,4 +1,4 @@
-import { Avatar, Box, Drawer, MenuItem, MenuList, Toolbar, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, Divider, Drawer, MenuItem, MenuList, Toolbar, Typography, useTheme } from "@mui/material";
 import { Fragment, useState } from "react";
 import * as MikeLiu from "../static/avatar.png";
 import * as Background from "../static/background.jpg";
@@ -78,6 +78,34 @@ function SlideMenu(props) {
                             
                         >
                             归档
+                        </Typography>
+                        </MenuItem>
+                        <MenuItem sx={{marginTop:"1em"}}>
+                        <Typography
+                            variant="h5"
+                            component="span"
+                            
+                        >
+                            标签
+                        </Typography>
+                        </MenuItem>
+                        <Divider/>
+                        <MenuItem sx={{marginTop:"1em"}}>
+                        <Typography
+                            variant="h6"
+                            component="span"
+                            
+                        >
+                            关于
+                        </Typography>
+                        </MenuItem>
+                        <MenuItem sx={{marginTop:"1em"}}>
+                        <Typography
+                            variant="h6"
+                            component="span"
+                            
+                        >
+                            设置
                         </Typography>
                         </MenuItem>
                     </MenuList>

@@ -48,7 +48,10 @@ class App extends Component {
   constructor()
   {
     super()
-    this.state=({menuOn:false,ready:true})
+    this.state=({menuOn:false,ready:true,title:""})
+    this.setTitle=function(title){
+      this.setState({title:title})
+    }
     this.defaultTheme = createTheme({
       // components: {
       //     : {
@@ -66,8 +69,8 @@ render(){
         <ScopedCssBaseline>
           <SlideMenu toggleOpenStatus={()=>{this.setState({"menuOn":!this.state.menuOn})}} open={this.state.menuOn}/>
           <Routes>
-            <Route path="/" element={<NaviBar toggleMenuOn={()=>{this.setState({"menuOn":!this.state.menuOn})}} isIndex={true}/>} />
-            <Route path="*" element={<NaviBar toggleMenuOn={()=>{}} isIndex={false}/> }/>
+            <Route path="/" element={<NaviBar pageName="首页" toggleMenuOn={()=>{this.setState({"menuOn":!this.state.menuOn})}} isIndex={true}/>} />
+            <Route path="*" element={<NaviBar pageName={this.state.title} toggleMenuOn={()=>{}} isIndex={false}/> }/>
           </Routes>
           <Box component="div" style={{ margin: "0 0 0 0" }}>
             <main style={{backgroundColor:"#f5f5f5",height:"100vh"}}>
@@ -80,7 +83,7 @@ render(){
                       <Route index path="/" element={<PageLoader/>} />
                       <Route path="" element={<PageLoader/>} />
                       {articles.map((T)=>{
-                        return <Route path={"/articles/"+T.path} element={<PageViewer license={T.license} title={T.showName} modify={T.modify} file={T.path}/>}/>
+                        return <Route path={"/articles/"+T.path} element={<PageViewer license={T.license} title={T.showName} modify={T.modify} file={T.path} setTitle={this.setTitle.bind(this)}/>}/>
                       })}
                       {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
                       <Route path="*" element={<Error404/>} />

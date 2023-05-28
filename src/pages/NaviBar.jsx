@@ -54,7 +54,7 @@ class NaviBar extends Component {
                             variant="h5"
                             component="div"
                         >
-                            Mike Liu 的个人博客
+                            {this.props.pageName} - Mike Liu 的个人博客
                         </Typography>
                     
                 
