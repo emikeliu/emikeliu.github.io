@@ -10,7 +10,7 @@ __本博客正在建设中__
 
 ### 博客描述
 
-博客采用 `Markdown` 格式的博文数据，文章第一行是一个 `Markdown` 注释，注释内部有一个 `JSON` 配置，描述了文档的标题、作者、标签、许可协议。构建脚本从 `/src/pages/articles` 中遍历所有子目录并读取文件修改时间、创建时间、全文数据，构建脚本将文章中注释后的 50 个字符作为 Preview 内容，并将其余数据整理后写入 `/src/pages/articles.json` 。
+博客采用 `Markdown` 格式的博文数据，文章第一行是一个 `Markdown` 注释，注释内部有一个 `JSON` 配置，描述了文档的标题、作者、标签、许可协议。构建脚本（位于 `/scripts/articles.js` ，已合入 `create-react-app` 的构建生命周期）从 `/src/pages/articles` 中遍历所有子目录并读取文件修改时间、创建时间、全文数据，构建脚本将文章中注释后的 50 个字符作为 Preview 内容，并将其余数据整理后写入 `/src/pages/articles.json` 。
 
 `/pages/articles.json` 的样例如下：
 

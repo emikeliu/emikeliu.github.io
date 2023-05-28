@@ -1,6 +1,16 @@
 import { Avatar, Card, CardActionArea, CardContent, CardHeader, Typography } from "@mui/material";
 import { Component } from "react";
 class ArticleCard extends Component {
+    static formatterCN = new Intl.DateTimeFormat('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
+        
     render() {
         return (
 
@@ -13,7 +23,7 @@ class ArticleCard extends Component {
                             </Avatar>
                         }
                         title={this.props.showName}
-                        subheader={this.props.create}
+                        subheader={ArticleCard.formatterCN.format(new Date(this.props.create))}
 
                     />
                     <CardContent>

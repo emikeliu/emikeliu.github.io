@@ -2,6 +2,15 @@ import { Box, Typography } from "@mui/material";
 import hljs from "highlight.js";
 import { Component, Fragment } from "react";
 class PageViewer extends Component {
+    static formatterCN = new Intl.DateTimeFormat('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
     constructor() {
         super()
         this.state={text:""}
@@ -27,7 +36,7 @@ class PageViewer extends Component {
             </Typography>
             <div dangerouslySetInnerHTML={{__html:(this.state.text)}} style={{margin:"5px 5px 5px 5px"}} id="element"></div>
             <Typography variant="p" color="grey" component="div">
-                编辑于 {this.props.modify} · {this.props.license}
+                编辑于 {PageViewer.formatterCN.format(new Date(this.props.modify))} · {this.props.license}
                 
             </Typography>
             </Box>

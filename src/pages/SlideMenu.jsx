@@ -1,7 +1,7 @@
-import { ArrowBack } from "@mui/icons-material";
-import { Avatar, Box, Drawer, IconButton, Tab, Tabs, Toolbar, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, Drawer, MenuItem, MenuList, Toolbar, Typography, useTheme } from "@mui/material";
 import { Fragment, useState } from "react";
 import * as MikeLiu from "../static/avatar.png";
+import * as Background from "../static/background.jpg";
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -25,7 +25,7 @@ function SlideMenu(props) {
     const theme = useTheme()
     
     const [selection ,updateSelection] = useState(0)
-    
+    console.log(Background.default)
     function toggleTabSelection(event, value) {
         updateSelection(value)
     }
@@ -36,9 +36,9 @@ function SlideMenu(props) {
             onClose={props.toggleOpenStatus}
         >
             <Box sx={{ width: {lg:"25vw",xl:"25vw",md:"40vw",sm:"60vw",xs:"70vw"}}}>
-                <Box sx={{ backgroundColor:theme.palette.primary.main,height: "25vh"}} >
+                <Box sx={{height: "30vh",backgroundImage:"url("+Background.default+")",backgroundSize:"100% 100%"}}  >
                 <Toolbar>
-                <IconButton
+                {/* <IconButton
                     size="large"
                     edge="start"
                     color={theme.palette.background.default}
@@ -55,14 +55,14 @@ function SlideMenu(props) {
                             sx={{textAlign:"center",marginTop:"1vh"}}
                         >
                             Mike Liu 的个人博客
-                        </Typography>
+                        </Typography> */}
                 </Toolbar>
                 
                 <Avatar alt="Mike Liu" src={MikeLiu.default} sx={{ml:{lg:"calc((25vw - 15vh) / 2)",xl:"calc((25vw - 15vh) / 2)",md:"calc((40vw - 15vh) / 2)",sm:"calc((60vw - 15vh) / 2)",xs:"calc((70vw - 15vh) / 2)"}, height:"15vh", width:"15vh"}} ></Avatar>
                 </Box>
                 <Box sx={{ bgcolor: 'background.paper' }}>
-                    {/* <MenuList style={{marginTop:"calc(9.375vw + 10vh - 25vh)"}}>
-                        <MenuItem sx={{marginBottom:"1em"}}>
+                    <MenuList >
+                        <MenuItem sx={{marginTop:"1em"}}>
                         <Typography
                             variant="h5"
                             component="span"
@@ -71,7 +71,7 @@ function SlideMenu(props) {
                             最新
                         </Typography>
                         </MenuItem>
-                        <MenuItem sx={{marginBottom:"1em"}}>
+                        <MenuItem sx={{marginTop:"1em"}}>
                         <Typography
                             variant="h5"
                             component="span"
@@ -80,8 +80,9 @@ function SlideMenu(props) {
                             归档
                         </Typography>
                         </MenuItem>
-                    </MenuList> */}
-                    <Tabs variant="fullWidth" indicatorColor="primary" textColor="inherit" value={selection} onChange={toggleTabSelection}>
+                    </MenuList>
+                    </Box>
+                    {/* <Tabs variant="fullWidth" indicatorColor="primary" textColor="inherit" value={selection} onChange={toggleTabSelection}>
                         <Tab label="最新"/>
                         <Tab label="归档"/>
                     </Tabs>
@@ -91,7 +92,7 @@ function SlideMenu(props) {
                 </TabPanel>
                 <TabPanel value={selection} index={1}>
                     归档
-                </TabPanel>
+                </TabPanel> */}
             </Box>
         </Drawer>
     </Fragment>
