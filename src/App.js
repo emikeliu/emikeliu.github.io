@@ -83,7 +83,7 @@ render(){
                       <Route index path="/" element={<PageLoader/>} />
                       <Route path="" element={<PageLoader/>} />
                       {articles.map((T)=>{
-                        return <Route path={"/articles/"+T.path} element={<PageViewer license={T.license} title={T.showName} modify={T.modify} file={T.path} setTitle={this.setTitle.bind(this)}/>}/>
+                        return <Route path={"/articles/"+T.path} element={<PageViewer encrypted={T.encrypted} license={T.license} title={T.showName} modify={T.modify} file={T.path} setTitle={this.setTitle.bind(this)}/>}/>
                       })}
                       {/* <Route path="/articles/:file" element={<PageViewer/>} /> */}
                       <Route path="*" element={<Error404/>} />

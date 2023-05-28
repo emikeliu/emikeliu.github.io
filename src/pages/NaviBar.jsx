@@ -25,9 +25,9 @@ class NaviBar extends Component {
                 this.props.toggleMenuOn()
             }
         }
-        function MenuButtonClick() {
-            this.props.toggleMenuOn()
-        }
+        // function MenuButtonClick() {
+        //     this.props.toggleMenuOn()
+        // }
         return (
             <HideOnScroll {...this.props}>
 
@@ -51,7 +51,7 @@ class NaviBar extends Component {
                         
                     </IconButton>
                         <Typography
-                            variant="h5"
+                            variant="h6"
                             component="div"
                         >
                             {this.props.pageName} - Mike Liu 的个人博客

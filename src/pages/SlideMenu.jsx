@@ -25,7 +25,6 @@ function SlideMenu(props) {
     const theme = useTheme()
     
     const [selection ,updateSelection] = useState(0)
-    console.log(Background.default)
     function toggleTabSelection(event, value) {
         updateSelection(value)
     }
