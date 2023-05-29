@@ -1,4 +1,4 @@
-import { ArrowBack, Menu } from '@mui/icons-material';
+import { ArrowBack, Menu, MoreVert } from '@mui/icons-material';
 import { AppBar, IconButton, Slide, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import PropTypes from "prop-types";
 import { Component } from "react";
@@ -18,20 +18,17 @@ HideOnScroll.propTypes = {
 class NaviBar extends Component {
     render() {
         function ToolbarClick() {
-            if(!this.props.isIndex) {
+            if (!this.props.isIndex) {
                 window.location.hash = ""
             }
             else {
                 this.props.toggleMenuOn()
             }
         }
-        // function MenuButtonClick() {
-        //     this.props.toggleMenuOn()
-        // }
         return (
             <HideOnScroll {...this.props}>
 
-                <AppBar position="sticky" enableColorOnDark>
+                <AppBar position="sticky" enableColorOnDark sx={{overflow:"hidden",width:"100%"}}>
                     
                     <Toolbar>
                     <IconButton
@@ -39,7 +36,7 @@ class NaviBar extends Component {
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{ mr: 2 }}
+                        sx={{ mr: 2, flex: "0 0 auto"}}
                         onClick={ToolbarClick.bind(this)}
                     >
                     {
@@ -51,13 +48,28 @@ class NaviBar extends Component {
                         
                     </IconButton>
                         <Typography
-                            variant="h5"
+                            variant="h6"
                             component="div"
+                            sx={{
+                                flex: "1 1 auto",
+                                fontSize: "1.25rem",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden"
+                            }}
                         >
                             {this.props.pageName} - Mike Liu 的个人博客
                         </Typography>
-                    
-                
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ ml: 2, flex: "0 0 auto"}}
+                        >
+                        <MoreVert />
+
+                        </IconButton>    
                     </Toolbar>
                 </AppBar>
 

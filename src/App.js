@@ -5,9 +5,9 @@ import { Component } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Error404 from "./pages/Error404";
 import NaviBar from "./pages/NaviBar";
+import NaviDrawer from "./pages/NaviDrawer";
 import PageLoader from "./pages/PageLoader";
 import PageViewer from "./pages/PageViewer";
-import SlideMenu from "./pages/SlideMenu";
 import articles from './pages/articles.json';
 function ScrollTop(props) {
   const { children } = props;
@@ -67,7 +67,7 @@ render(){
     <HashRouter>
       <ThemeProvider theme={this.defaultTheme} >
         <ScopedCssBaseline>
-          <SlideMenu toggleOpenStatus={()=>{this.setState({"menuOn":!this.state.menuOn})}} open={this.state.menuOn}/>
+          <NaviDrawer toggleOpenStatus={()=>{this.setState({"menuOn":!this.state.menuOn})}} open={this.state.menuOn}/>
           <Routes>
             <Route path="/" element={<NaviBar pageName="首页" toggleMenuOn={()=>{this.setState({"menuOn":!this.state.menuOn})}} isIndex={true}/>} />
             <Route path="*" element={<NaviBar pageName={this.state.title} toggleMenuOn={()=>{}} isIndex={false}/> }/>
