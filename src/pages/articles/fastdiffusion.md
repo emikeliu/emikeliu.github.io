@@ -1,5 +1,5 @@
-[//]: # ({"name":"快速的 Stable Diffusion —— FastDiffusion","author":"Mike Liu","tag":["AI"],"license":"CC-BY 4.0"})
-下面是 `FastDiffusion` 的前端代码（暂未上传至 `GitHub`
+[//]: # ({"name":"快速的 Stable Diffusion —— FastDiffusion","author":"Mike Liu","tag":["AI"],"license":"MIT"})
+下面是 `FastDiffusion` 的前端代码（暂未上传至 `GitHub` ）
 ```python
 import time
 import uuid
